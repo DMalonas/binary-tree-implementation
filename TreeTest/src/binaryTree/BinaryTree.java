@@ -1,3 +1,5 @@
+package binaryTree;
+
 import java.util.*;
 import java.io.*;
 
@@ -22,19 +24,21 @@ class BinaryTree {
     	Node right;
 	*/
 	public static int height(Node root) {
-    if (root == null) 
-            return 0; 
-   
+		System.out.println("root height " + root);
+	    if (root == null) { 
+	       return 0;
+	    }   
         Queue<Node> q = new LinkedList(); 
-   
+        System.out.print(root.data);
         q.add(root); 
         int height = 0; 
    
         while (true)  
         { 
             int nodeCount = q.size(); 
-            if (nodeCount == 0) 
-                return height - 1; 
+            if (nodeCount == 0) {
+                return height - 1;
+            }
             height++; 
    
 
@@ -53,16 +57,20 @@ class BinaryTree {
 
 	public static Node insert(Node root, int data) {
         if(root == null) {
+        	System.out.println("null");
             return new Node(data);
         } else {
             Node cur;
             if(data <= root.data) {
                 cur = insert(root.left, data);
                 root.left = cur;
+            	System.out.println("left");
             } else {
                 cur = insert(root.right, data);
                 root.right = cur;
+            	System.out.println("right");
             }
+            System.out.println("root " + root);
             return root;
         }
     }
