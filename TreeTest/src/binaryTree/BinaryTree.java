@@ -3,33 +3,36 @@ package binaryTree;
 import java.util.*;
 import java.io.*;
 
-class Node {
-    Node left;
-    Node right;
-    int data;
-    
-    Node(int data) {
-        this.data = data;
-        left = null;
-        right = null;
-    }
-}
+
 
 class BinaryTree {
+	public Node lca(Node root, int v1, int v2) {
+      	// Write your code here.
+        if(root.data < v1 && root.data < v2){
+            return lca(root.right,v1,v2);
+        }
 
+        //Bigger than both
+        if(root.data > v1 && root.data > v2){
+            return lca(root.left,v1,v2);
+        }
+
+        //Else solution already found
+        return root;
+    }
 	/*
     class Node 
     	int data;
     	Node left;
     	Node right;
 	*/
-	public static int height(Node root) {
-		System.out.println("root height " + root);
+	public int height(Node root) {
+		//System.out.println("root height " + root);
 	    if (root == null) { 
 	       return 0;
 	    }   
         Queue<Node> q = new LinkedList(); 
-        System.out.print(root.data);
+        //System.out.print(root.data);
         q.add(root); 
         int height = 0; 
    
@@ -55,9 +58,9 @@ class BinaryTree {
         } 
     }
 
-	public static Node insert(Node root, int data) {
+	public Node insert(Node root, int data) {
         if(root == null) {
-        	System.out.println("null");
+        	//System.out.println("null");
             return new Node(data);
         } else {
             Node cur;
@@ -70,21 +73,8 @@ class BinaryTree {
                 root.right = cur;
             	System.out.println("right");
             }
-            System.out.println("root " + root);
+            //System.out.println("root " + root);
             return root;
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int t = scan.nextInt();
-        Node root = null;
-        while(t-- > 0) {
-            int data = scan.nextInt();
-            root = insert(root, data);
-        }
-        scan.close();
-        int height = height(root);
-        System.out.println(height);
     }	
 }
